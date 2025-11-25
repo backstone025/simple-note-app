@@ -11,15 +11,20 @@ import java.util.List;
 
 @Controller
 public class HomeController {
+    public HomeController(HomeService homeService) {
+        this.homeService = homeService;
+    }
+
     @Autowired
     NoteRepository noteRepository;
+
+    HomeService homeService;
 
     @RequestMapping("home")
     public String home(ModelMap model) {
         String username = "backstone";
-        List<Note> notes = noteRepository.findNoteByUsername(username);
+        List<Note> notes = homeService.findRecentNotes("backstone",5);
         model.addAttribute("notes", notes);
-
         return "home";
     }
 }
