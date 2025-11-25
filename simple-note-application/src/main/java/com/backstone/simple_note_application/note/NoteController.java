@@ -9,6 +9,7 @@ public class NoteController {
     public NoteController(NoteRepository noteRepository) {
         this.noteRepository = noteRepository;
     }
+
     @Autowired
     NoteRepository noteRepository;
 
