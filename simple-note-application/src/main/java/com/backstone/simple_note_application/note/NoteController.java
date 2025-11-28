@@ -2,7 +2,6 @@ package com.backstone.simple_note_application.note;
 
 import com.backstone.simple_note_application.note.hierarchy.CategoryService;
 import com.backstone.simple_note_application.note.hierarchy.CategoryTreeDTO;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
