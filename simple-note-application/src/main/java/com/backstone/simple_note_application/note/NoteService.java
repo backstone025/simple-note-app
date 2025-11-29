@@ -17,4 +17,8 @@ public class NoteService {
     public List<Note> getByUsernameAndGroupid(String username, Long groupid) {
         return noteRepository.findNoteByUsernameAndGroupidOrderByDateDesc(username, groupid);
     }
+
+    public Note getNoteByUsernameAndId(String username, Long id) {
+        return noteRepository.findNoteByUsernameAndId(username, id);
+    }
 }

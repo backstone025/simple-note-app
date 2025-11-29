@@ -4,9 +4,11 @@ import com.backstone.simple_note_application.note.hierarchy.Category;
 import com.backstone.simple_note_application.note.hierarchy.CategoryService;
 import com.backstone.simple_note_application.note.hierarchy.CategoryTreeDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -34,5 +36,15 @@ public class NoteController {
         model.addAttribute("categoryTree", json);
         model.addAttribute("noteList", noteList);
         return "noteList";
+    }
+
+    @RequestMapping("note-edit")
+    public String noteEdit(ModelMap model, @RequestParam("noteId") Long noteId) throws Exception {
+        // FIXME Remind to make usable for each user. (do not fix username as "backstone".)
+        String username = "backstone";
+
+        Note note = noteService.getNoteByUsernameAndId(username, noteId);
+        model.addAttribute("note", note);
+        return "noteEdit";
     }
 }

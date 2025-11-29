@@ -11,7 +11,7 @@ public class Note {
     public Note() {
     }
 
-    public Note(Long id, String username, Long groupid, String type, Integer state, String title, String metainfo, String context, LocalDate date) {
+    public Note(Long id, String username, Long groupid, String type, Integer state, String title, String metainfo, String contents, LocalDate date) {
         this.id = id;
         this.username = username;
         this.groupid = groupid;
@@ -19,7 +19,7 @@ public class Note {
         this.state = state;
         this.title = title;
         this.metainfo = metainfo;
-        this.context = context;
+        this.contents = contents;
         this.date = date;
     }
 
@@ -32,7 +32,7 @@ public class Note {
     private Integer state;
     private String title;
     private String metainfo;
-    private String context;
+    private String contents;
     private LocalDate date;
 
     public Long getId() {
@@ -91,12 +91,13 @@ public class Note {
         this.metainfo = metainfo;
     }
 
-    public String getContext() {
-        return context;
+
+    public String getContents() {
+        return contents;
     }
 
-    public void setContext(String context) {
-        this.context = context;
+    public void setContents(String contents) {
+        this.contents = contents;
     }
 
     public LocalDate getDate() {

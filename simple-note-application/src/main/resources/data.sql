@@ -1,18 +1,18 @@
 -- note
 
-insert into note(ID, USERNAME, GROUPID, TYPE, STATE, TITLE, METAINFO, CONTEXT, DATE)
+insert into note(ID, USERNAME, GROUPID, TYPE, STATE, TITLE, METAINFO, CONTENTS, DATE)
 values (10001, 'backstone', 1, 'TEXT', 1, 'TEST 1', '', 'This note is for test', CURRENT_DATE());
 
-insert into note(ID, USERNAME, GROUPID, TYPE, STATE, TITLE, METAINFO, CONTEXT, DATE)
+insert into note(ID, USERNAME, GROUPID, TYPE, STATE, TITLE, METAINFO, CONTENTS, DATE)
 values (10002, 'backstone', 1, 'TEXT', 1, 'TEST 2', '', 'This note is for test', DATEADD('DAY', 1, CURRENT_DATE));
 
-insert into note(ID, USERNAME, GROUPID, TYPE, STATE, TITLE, METAINFO, CONTEXT, DATE)
+insert into note(ID, USERNAME, GROUPID, TYPE, STATE, TITLE, METAINFO, CONTENTS, DATE)
 values (10003, 'backstone', 8, 'TEXT', 1, 'TEST 3', '', 'This note is for test', DATEADD('DAY', 3, CURRENT_DATE));
 
-insert into note(ID, USERNAME, GROUPID, TYPE, STATE, TITLE, METAINFO, CONTEXT, DATE)
+insert into note(ID, USERNAME, GROUPID, TYPE, STATE, TITLE, METAINFO, CONTENTS, DATE)
 values (10004, 'backstone', 4, 'TEXT', 1, 'TEST 4', '', 'This note is for test', DATEADD('DAY', 10, CURRENT_DATE));
 
-insert into note(ID, USERNAME, GROUPID, TYPE, STATE, TITLE, METAINFO, CONTEXT, DATE)
+insert into note(ID, USERNAME, GROUPID, TYPE, STATE, TITLE, METAINFO, CONTENTS, DATE)
 values (10005, 'backstone', 8, 'TEXT', 1, 'TEST 5', '', 'This note is for test', DATEADD('DAY', 5, CURRENT_DATE));
 
 -- category

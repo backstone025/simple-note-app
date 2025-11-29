@@ -8,4 +8,5 @@ import java.util.List;
 public interface NoteRepository extends JpaRepository<Note, Long> {
     public List<Note> findNoteByUsername(String username, PageRequest pageRequest);
     public List<Note> findNoteByUsernameAndGroupidOrderByDateDesc(String username, Long groupid);
+    public Note findNoteByUsernameAndId(String username, Long id);
 }

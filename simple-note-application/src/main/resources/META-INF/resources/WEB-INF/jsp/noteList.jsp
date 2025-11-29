@@ -14,7 +14,7 @@
             </thead>
             <tbody>
             <c:forEach items="${noteList}" var="note">
-                <tr>
+                <tr class="clickable-row" data-note-id="${note.id}">
                     <td>${note.username}</td>
                     <td>${note.type}</td>
                     <td>${note.date}</td>
@@ -53,5 +53,31 @@
     const treeHTML = buildTreeHTML(treeData);
     document.getElementById('category-container').innerHTML = treeHTML;
 </script>
+
+<script>
+    const clickableRows = document.querySelectorAll(".clickable-row");
+
+    clickableRows.forEach(row => {
+        row.addEventListener("click", function (){
+            const noteId = row.getAttribute('data-note-id');
+            const url = "note-edit?noteId=" + noteId;
+
+            console.log("clicked ID :", noteId);
+            window.location.href=url;
+        })
+    })
+</script>
+
+<style>
+    .clickable-row{
+        cursor: pointer;
+    }
+    .clickable-row{
+        background-color: beige;
+    }
+    .clickable-row:hover{
+        background-color: cyan;
+    }
+</style>
 
 <%@include file="common/footer.jspf" %>
