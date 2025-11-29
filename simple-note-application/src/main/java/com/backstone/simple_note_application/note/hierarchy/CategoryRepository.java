@@ -10,4 +10,5 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
             "FROM Category c " +
             "WHERE c.parent IS NULL AND c.username = :username")
     Category findrootCategory(@Param("username") String username);
+    Category findCategoryByUsernameAndId(String username, Long id);
 }

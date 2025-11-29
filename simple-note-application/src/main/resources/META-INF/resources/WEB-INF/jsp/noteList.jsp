@@ -39,7 +39,9 @@
         treeData.forEach(item => {
             html += '<li>';
 
+            html += '<a href="#" class="clickable-node" data-category-id="' + item.id + '">';
             html += item.name;
+            html +='</a>';
 
             if (item.children && item.children.length > 0) {
                 html += buildTreeHTML(item.children);
@@ -55,6 +57,19 @@
 </script>
 
 <script>
+    const clickableNode = document.querySelectorAll(".clickable-node");
+
+    clickableNode.forEach(node => {
+       node.addEventListener("click", function (){
+           const categoryId = node.getAttribute('data-category-id');
+           const url = "/note-list?nodeId=" + categoryId;
+
+           window.location.href = url;
+       });
+    });
+</script>
+
+<script>
     const clickableRows = document.querySelectorAll(".clickable-row");
 
     clickableRows.forEach(row => {
@@ -62,7 +77,6 @@
             const noteId = row.getAttribute('data-note-id');
             const url = "note-edit?noteId=" + noteId;
 
-            console.log("clicked ID :", noteId);
             window.location.href=url;
         })
     })
@@ -76,6 +90,16 @@
         background-color: beige;
     }
     .clickable-row:hover{
+        background-color: cyan;
+    }
+</style>
+<style>
+    .clickable-node{
+        color: black;
+        text-decoration: none;
+    }
+    .clickable-node:hover{
+        color: black;
         background-color: cyan;
     }
 </style>

@@ -18,6 +18,10 @@ public class CategoryService {
         return categoryRepository.findrootCategory(username);
     }
 
+    public Category getCategoryByUsernameAndId(String username, Long id) {
+        return categoryRepository.findCategoryByUsernameAndId(username, id);
+    }
+
     public List<CategoryTreeDTO> buildCategoryTree(Category parent) {
         List<CategoryTreeDTO> categoryTree = new ArrayList<>();
         categoryTree.add(convertToCategoryTreeDTO(parent));

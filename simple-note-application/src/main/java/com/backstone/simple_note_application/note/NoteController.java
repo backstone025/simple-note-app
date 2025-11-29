@@ -4,7 +4,6 @@ import com.backstone.simple_note_application.note.hierarchy.Category;
 import com.backstone.simple_note_application.note.hierarchy.CategoryService;
 import com.backstone.simple_note_application.note.hierarchy.CategoryTreeDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +22,13 @@ public class NoteController {
     NoteService noteService;
 
     @RequestMapping("note-list")
-    public String noteList(ModelMap model) throws Exception {
+    public String noteList(ModelMap model, @RequestParam("nodeId") Long nodeId) throws Exception {
         // FIXME Remind to make usable for each user. (do not fix username as "backstone".)
         String username = "backstone";
         Category root = categoryService.getCategoryRootByUsername(username);
+
         List<CategoryTreeDTO> categoryTree = categoryService.buildCategoryTree(root);
-        List<Note> noteList = noteService.getByUsernameAndGroupid(username, root.getId());
+        List<Note> noteList = noteService.getByUsernameAndGroupid(username, nodeId);
 
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(categoryTree);

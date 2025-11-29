@@ -3,7 +3,8 @@
 <div class="container">
     <h1>Simple Note Home</h1>
     <h3>
-        <a href="note-list">recent log</a>
+        <!-- Suppose that root node's ID is 1. -->
+        <a href="note-list?nodeId=1">recent log</a>
     </h3>
     <div>
         <table class="table">
