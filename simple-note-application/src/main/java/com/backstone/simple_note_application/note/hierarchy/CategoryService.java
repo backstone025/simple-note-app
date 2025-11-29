@@ -14,26 +14,14 @@ public class CategoryService {
 
     private CategoryRepository categoryRepository;
 
-    public List<CategoryTreeDTO> buildCategoryEntireTree() {
-        Category root = categoryRepository.findrootCategory();
-
-        if (root == null) {
-            return new ArrayList<>();
-        }else {
-            return root.getChildren().stream()
-                    .map(this::convertToCategoryTreeDTO)
-                    .collect(Collectors.toList());
-        }
+    public Category getCategoryRootByUsername(String username) {
+        return categoryRepository.findrootCategory(username);
     }
 
-    public List<CategoryTreeDTO> buildCategorySubTree(Category parent) {
-        if (parent == null) {
-            return new ArrayList<>();
-        }else {
-            return parent.getChildren().stream()
-                    .map(this::convertToCategoryTreeDTO)
-                    .collect(Collectors.toList());
-        }
+    public List<CategoryTreeDTO> buildCategoryTree(Category parent) {
+        List<CategoryTreeDTO> categoryTree = new ArrayList<>();
+        categoryTree.add(convertToCategoryTreeDTO(parent));
+        return categoryTree;
     }
 
     public CategoryTreeDTO convertToCategoryTreeDTO(Category category) {

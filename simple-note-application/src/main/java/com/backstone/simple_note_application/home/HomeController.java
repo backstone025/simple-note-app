@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
-
 @Controller
 public class HomeController {
     public HomeController(HomeService homeService) {
@@ -23,6 +22,7 @@ public class HomeController {
 
     @RequestMapping("home")
     public String home(ModelMap model) {
+        // FIXME Remind to make usable for each user. (do not fix username as "backstone".)
         String username = "backstone";
         List<Note> notes = homeService.findRecentNotes("backstone",5);
         model.addAttribute("notes", notes);

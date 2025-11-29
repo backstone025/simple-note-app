@@ -11,9 +11,10 @@ public class Note {
     public Note() {
     }
 
-    public Note(Long id, String username, String type, Integer state, String title, String metainfo, String context, LocalDate date) {
+    public Note(Long id, String username, Long groupid, String type, Integer state, String title, String metainfo, String context, LocalDate date) {
         this.id = id;
         this.username = username;
+        this.groupid = groupid;
         this.type = type;
         this.state = state;
         this.title = title;
@@ -26,6 +27,7 @@ public class Note {
     @GeneratedValue
     private Long id;
     private String username;
+    private Long groupid;
     private String type;
     private Integer state;
     private String title;
@@ -47,6 +49,14 @@ public class Note {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Long getGroupid() {
+        return groupid;
+    }
+
+    public void setGroupid(Long groupid) {
+        this.groupid = groupid;
     }
 
     public String getType() {

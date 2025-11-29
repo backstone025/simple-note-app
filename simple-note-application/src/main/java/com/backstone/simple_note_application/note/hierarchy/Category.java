@@ -10,9 +10,10 @@ public class Category {
     public Category() {
     }
 
-    public Category(Long id, String name, Category parent, List<Category> children) {
+    public Category(Long id, String name, String username, Category parent, List<Category> children) {
         this.id = id;
         this.name = name;
+        this.username = username;
         this.parent = parent;
         this.children = children;
     }
@@ -21,6 +22,7 @@ public class Category {
     @GeneratedValue
     private Long id;
     private String name;
+    private String username;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent;
@@ -41,6 +43,14 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Category getParent() {
