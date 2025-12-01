@@ -44,7 +44,8 @@ public class NoteController {
         String username = "backstone";
 
         Note note = noteService.getNoteByUsernameAndId(username, noteId);
+        String editPage = noteService.getNoteEditPageByType(note);
         model.addAttribute("note", note);
-        return "noteEdit";
+        return editPage;
     }
 }

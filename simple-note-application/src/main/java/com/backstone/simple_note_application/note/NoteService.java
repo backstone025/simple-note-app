@@ -21,4 +21,11 @@ public class NoteService {
     public Note getNoteByUsernameAndId(String username, Long id) {
         return noteRepository.findNoteByUsernameAndId(username, id);
     }
+
+    public String getNoteEditPageByType(Note note) {
+        String type = note.getType();
+        if(type.equals("TEXT")) {
+            return "NoteEditPage/textType";
+        }else return "NoteEditPage/noteEdit";
+    }
 }
