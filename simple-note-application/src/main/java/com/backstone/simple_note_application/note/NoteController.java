@@ -6,7 +6,9 @@ import com.backstone.simple_note_application.note.hierarchy.CategoryTreeDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -38,8 +40,8 @@ public class NoteController {
         return "noteList";
     }
 
-    @RequestMapping("note-edit")
-    public String noteEdit(ModelMap model, @RequestParam("noteId") Long noteId) throws Exception {
+    @RequestMapping("note-read")
+    public String noteRead(ModelMap model, @RequestParam("noteId") Long noteId) throws Exception {
         // FIXME Remind to make usable for each user. (do not fix username as "backstone".)
         String username = "backstone";
 
@@ -47,5 +49,28 @@ public class NoteController {
         String editPage = "noteRead";
         model.addAttribute("note", note);
         return editPage;
+    }
+
+    @RequestMapping(value = "note-edit", method = RequestMethod.GET)
+    public String noteEditGet(ModelMap model, @RequestParam("noteId") Long noteId) throws Exception {
+        // FIXME Remind to make usable for each user. (do not fix username as "backstone".)
+        String username = "backstone";
+
+        Note note = noteService.getNoteByUsernameAndId(username, noteId);
+        String editPage = noteService.getNoteEditPageByType(note);
+        model.addAttribute("note", note);
+        return editPage;
+    }
+
+    @RequestMapping(value = "note-edit", method = RequestMethod.POST)
+    public String noteEditPost(@ModelAttribute("note") Note note) throws Exception {
+        // FIXME Remind to make usable for each user. (do not fix username as "backstone".)
+        String username = "backstone";
+
+        Category category = categoryService.getCategoryRootByUsername(username);
+        String noteEdit = "redirect:note-list?nodeId="+category.getId();
+
+        noteService.updateNote(note);
+        return noteEdit;
     }
 }

@@ -28,4 +28,8 @@ public class NoteService {
             return "NoteEditPage/textType";
         }else return "NoteEditPage/noteEdit";
     }
+
+    public void updateNote(Note note) {
+        noteRepository.save(note);
+    }
 }

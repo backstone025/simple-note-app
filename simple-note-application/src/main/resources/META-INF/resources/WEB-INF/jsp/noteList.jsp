@@ -15,7 +15,7 @@
             <tbody>
             <c:forEach items="${noteList}" var="note">
                 <tr class="clickable-row" data-note-id="${note.id}">
-                    <td>${note.username}</td>
+                    <td>${note.title}</td>
                     <td>${note.type}</td>
                     <td>${note.date}</td>
                 </tr>
@@ -41,7 +41,7 @@
 
             html += '<a href="#" class="clickable-node" data-category-id="' + item.id + '">';
             html += item.name;
-            html +='</a>';
+            html += '</a>';
 
             if (item.children && item.children.length > 0) {
                 html += buildTreeHTML(item.children);
@@ -60,12 +60,12 @@
     const clickableNode = document.querySelectorAll(".clickable-node");
 
     clickableNode.forEach(node => {
-       node.addEventListener("click", function (){
-           const categoryId = node.getAttribute('data-category-id');
-           const url = "/note-list?nodeId=" + categoryId;
+        node.addEventListener("click", function () {
+            const categoryId = node.getAttribute('data-category-id');
+            const url = "/note-list?nodeId=" + categoryId;
 
-           window.location.href = url;
-       });
+            window.location.href = url;
+        });
     });
 </script>
 
@@ -73,32 +73,35 @@
     const clickableRows = document.querySelectorAll(".clickable-row");
 
     clickableRows.forEach(row => {
-        row.addEventListener("click", function (){
+        row.addEventListener("click", function () {
             const noteId = row.getAttribute('data-note-id');
-            const url = "note-edit?noteId=" + noteId;
+            const url = "note-read?noteId=" + noteId;
 
-            window.location.href=url;
+            window.location.href = url;
         })
     })
 </script>
 
 <style>
-    .clickable-row{
+    .clickable-row {
         cursor: pointer;
     }
-    .clickable-row{
+
+    .clickable-row {
         background-color: beige;
     }
-    .clickable-row:hover{
+
+    .clickable-row:hover {
         background-color: cyan;
     }
 </style>
 <style>
-    .clickable-node{
+    .clickable-node {
         color: black;
         text-decoration: none;
     }
-    .clickable-node:hover{
+
+    .clickable-node:hover {
         color: black;
         background-color: cyan;
     }

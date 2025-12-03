@@ -9,12 +9,14 @@
             <h4>Author : ${note.username}</h4>
         </div>
         <div class="right-align">
-            <a href="noteEdit.jsp" class="btn btn-success">edit</a>
+            <a href="note-edit?noteId=${note.id}" class="btn btn-success">edit</a>
         </div>
     </div>
-    <div class="block">
-        <hr>
-        > ${note.contents}
+    <hr>
+    <p>
+        -->>>--
+    </p>
+    <div class="block">${note.contents}
     </div>
 </div>
 
@@ -25,11 +27,18 @@
         align-items: flex-start;
         margin-bottom: 20px;
     }
-    .header-info{
+
+    .header-info {
         flex-grow: 1;
     }
+
     .right-align {
         margin-left: auto;
+    }
+</style>
+<style>
+    .block {
+        white-space: pre-wrap;
     }
 </style>
 <%@include file="common/footer.jspf" %>

@@ -3,6 +3,7 @@ package com.backstone.simple_note_application.note;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 
 import java.time.LocalDate;
 
@@ -32,6 +33,7 @@ public class Note {
     private Integer state;
     private String title;
     private String metainfo;
+    @Lob
     private String contents;
     private LocalDate date;
 
