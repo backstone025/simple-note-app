@@ -30,7 +30,12 @@ public class Note {
     private String username;
     private Long groupid;
     private String type;
-    // 0: pre-state is not exist(this is first one) 1: note has pre-state
+    /*
+    0 : This note has not been used
+    - Some attribute is not decided, so it can't be save
+
+    1: No problem
+     */
     private Integer state;
     private String title;
     private String metainfo;

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -38,7 +37,7 @@ public class NoteController {
 
         model.addAttribute("categoryTree", json);
         model.addAttribute("noteList", noteList);
-        model.addAttribute("nodeId", root.getId());
+        model.addAttribute("nodeId", nodeId);
         return "noteList";
     }
 
@@ -71,9 +70,10 @@ public class NoteController {
         String username = "backstone";
 
         Long groupid = note.getGroupid();
-        String noteEdit = "redirect:note-list?nodeId="+groupid;;
+        String noteEdit = "redirect:note-list?nodeId=" + groupid;
+        ;
 
-        if(note.getState() != 1){
+        if (note.getState() != 1) {
             note.setState(1);
         }
 
@@ -89,11 +89,11 @@ public class NoteController {
         Note note = noteService.getNoteByUsernameAndId(username, noteId);
 
         noteService.deleteNote(note);
-        return "redirect:note-list?nodeId="+nodeId;
+        return "redirect:note-list?nodeId=" + nodeId;
     }
 
     @RequestMapping("note-add")
-    public String noteAddGet(ModelMap model, @RequestParam("nodeId") Long nodeId) throws Exception {
+    public String noteAdd(ModelMap model, @RequestParam("nodeId") Long nodeId) throws Exception {
         // FIXME Remind to make usable for each user. (do not fix username as "backstone".)
         String username = "backstone";
 
@@ -112,7 +112,7 @@ public class NoteController {
 
         model.addAttribute("categoryTree", json);
         model.addAttribute("noteList", noteList);
-        model.addAttribute("nodeId", root.getId());
+        model.addAttribute("nodeId", nodeId);
         return "noteList";
     }
 }
