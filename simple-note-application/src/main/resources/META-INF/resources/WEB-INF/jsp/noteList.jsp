@@ -18,6 +18,7 @@
                     <td>${note.title}</td>
                     <td>${note.type}</td>
                     <td>${note.date}</td>
+                    <td><a href="note-delete?noteId=${note.id}&nodeId=${note.groupid}" class="btn btn-warning">DELETE</a></td>
                 </tr>
             </c:forEach>
             </tbody>

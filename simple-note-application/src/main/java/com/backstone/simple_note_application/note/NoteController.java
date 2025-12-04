@@ -73,4 +73,15 @@ public class NoteController {
         noteService.updateNote(note);
         return noteEdit;
     }
+
+    @RequestMapping("note-delete")
+    public String noteDelete(ModelMap model, @RequestParam("noteId") Long noteId, @RequestParam("nodeId") Long nodeId) throws Exception {
+        // FIXME Remind to make usable for each user. (do not fix username as "backstone".)
+        String username = "backstone";
+
+        Note note = noteService.getNoteByUsernameAndId(username, noteId);
+
+        noteService.deleteNote(note);
+        return "redirect:note-list?nodeId="+nodeId;
+    }
 }

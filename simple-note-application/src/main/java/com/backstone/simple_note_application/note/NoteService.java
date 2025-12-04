@@ -32,4 +32,8 @@ public class NoteService {
     public void updateNote(Note note) {
         noteRepository.save(note);
     }
+
+    public void deleteNote(Note note) {
+        noteRepository.delete(note);
+    }
 }
