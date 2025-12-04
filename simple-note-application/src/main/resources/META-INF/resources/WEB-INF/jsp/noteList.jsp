@@ -10,6 +10,7 @@
                 <th>Title</th>
                 <th>Type</th>
                 <th>Date</th>
+                <th><a href="note-add?nodeId=${nodeId}" class="btn btn-success">ADD</a></th>
             </tr>
             </thead>
             <tbody>
@@ -18,7 +19,7 @@
                     <td>${note.title}</td>
                     <td>${note.type}</td>
                     <td>${note.date}</td>
-                    <td><a href="note-delete?noteId=${note.id}&nodeId=${note.groupid}" class="btn btn-warning">DELETE</a></td>
+                    <td><a href="note-delete?noteId=${note.id}&nodeId=${nodeId}" class="btn btn-warning">DELETE</a></td>
                 </tr>
             </c:forEach>
             </tbody>

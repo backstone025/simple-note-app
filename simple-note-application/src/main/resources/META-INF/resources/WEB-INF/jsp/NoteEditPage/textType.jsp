@@ -15,26 +15,24 @@
                 </fieldset>
                 <fieldset class="mb-3">
                     <h4>
-                        <form:label path="date">Date : </form:label>
-                        <form:input path="date" type="text" required="required"/>
-                        <form:errors path="date" cssClass="text-warning"/>
+                        Date : ${note.date}
                     </h4>
                 </fieldset>
                 <fieldset class="mb-3">
                     <h4>
-                        <form:label path="username">Author : </form:label>
-                        <form:input path="username" type="text" required="required"/>
-                        <form:errors path="username" cssClass="text-warning"/>
+                        Author : ${note.username}
                     </h4>
                 </fieldset>
 
             </div>
             <div class="right-align">
                 <form:hidden path="id"/>
+                <form:hidden path="username"/>
                 <form:hidden path="groupid"/>
                 <form:hidden path="type"/>
                 <form:hidden path="state"/>
                 <form:hidden path="metainfo"/>
+                <form:hidden path="date"/>
                 <input type="submit" class="btn btn-success" value="complete"/>
             </div>
         </div>

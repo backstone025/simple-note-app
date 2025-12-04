@@ -30,6 +30,7 @@ public class Note {
     private String username;
     private Long groupid;
     private String type;
+    // 0: pre-state is not exist(this is first one) 1: note has pre-state
     private Integer state;
     private String title;
     private String metainfo;

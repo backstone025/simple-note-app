@@ -3,6 +3,8 @@ package com.backstone.simple_note_application.note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -24,9 +26,9 @@ public class NoteService {
 
     public String getNoteEditPageByType(Note note) {
         String type = note.getType();
-        if(type.equals("TEXT")) {
+        if (type.equals("TEXT")) {
             return "NoteEditPage/textType";
-        }else return "NoteEditPage/noteEdit";
+        } else return "NoteEditPage/noteEdit";
     }
 
     public void updateNote(Note note) {
@@ -35,5 +37,15 @@ public class NoteService {
 
     public void deleteNote(Note note) {
         noteRepository.delete(note);
+    }
+
+    public Note createNote(String username, Long groupid) {
+        Note newNote = new Note();
+        newNote.setUsername(username);
+        newNote.setGroupid(groupid);
+        newNote.setType("TEXT");
+        newNote.setState(0);
+        newNote.setDate(LocalDate.now());
+        return newNote;
     }
 }

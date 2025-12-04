@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -37,6 +38,7 @@ public class NoteController {
 
         model.addAttribute("categoryTree", json);
         model.addAttribute("noteList", noteList);
+        model.addAttribute("nodeId", root.getId());
         return "noteList";
     }
 
@@ -58,6 +60,7 @@ public class NoteController {
 
         Note note = noteService.getNoteByUsernameAndId(username, noteId);
         String editPage = noteService.getNoteEditPageByType(note);
+
         model.addAttribute("note", note);
         return editPage;
     }
@@ -67,15 +70,19 @@ public class NoteController {
         // FIXME Remind to make usable for each user. (do not fix username as "backstone".)
         String username = "backstone";
 
-        Category category = categoryService.getCategoryRootByUsername(username);
-        String noteEdit = "redirect:note-list?nodeId="+category.getId();
+        Long groupid = note.getGroupid();
+        String noteEdit = "redirect:note-list?nodeId="+groupid;;
+
+        if(note.getState() != 1){
+            note.setState(1);
+        }
 
         noteService.updateNote(note);
         return noteEdit;
     }
 
     @RequestMapping("note-delete")
-    public String noteDelete(ModelMap model, @RequestParam("noteId") Long noteId, @RequestParam("nodeId") Long nodeId) throws Exception {
+    public String noteDelete(@RequestParam("noteId") Long noteId, @RequestParam("nodeId") Long nodeId) throws Exception {
         // FIXME Remind to make usable for each user. (do not fix username as "backstone".)
         String username = "backstone";
 
@@ -83,5 +90,29 @@ public class NoteController {
 
         noteService.deleteNote(note);
         return "redirect:note-list?nodeId="+nodeId;
+    }
+
+    @RequestMapping("note-add")
+    public String noteAddGet(ModelMap model, @RequestParam("nodeId") Long nodeId) throws Exception {
+        // FIXME Remind to make usable for each user. (do not fix username as "backstone".)
+        String username = "backstone";
+
+        Note note = noteService.createNote(username, nodeId);
+        noteService.updateNote(note);
+        note.setTitle("empty note " + note.getId());
+        noteService.updateNote(note);
+
+        Category root = categoryService.getCategoryRootByUsername(username);
+
+        List<CategoryTreeDTO> categoryTree = categoryService.buildCategoryTree(root);
+        List<Note> noteList = noteService.getByUsernameAndGroupid(username, nodeId);
+
+        ObjectMapper mapper = new ObjectMapper();
+        String json = mapper.writeValueAsString(categoryTree);
+
+        model.addAttribute("categoryTree", json);
+        model.addAttribute("noteList", noteList);
+        model.addAttribute("nodeId", root.getId());
+        return "noteList";
     }
 }
